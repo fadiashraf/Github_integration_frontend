@@ -1,0 +1,51 @@
+<div class="content" style="width: 100%; height: 100%">
+  <div class="inputsContainer">
+    <mat-form-field>
+      <mat-select [(value)]="selectedIntegration">
+        <mat-option
+          *ngFor="let integration of integrations"
+          [value]="integration"
+        >
+          {{ integration }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select
+        [(value)]="selectedCollection"
+        (selectionChange)="handleCollectionChange($event)"
+      >
+        <mat-option
+          *ngFor="let collection of collections"
+          [value]="collection.collectionName"
+        >
+          {{ collection.title }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input
+        matInput
+        placeholder="Search"
+        (input)="onFilterTextBoxChanged()"
+        id="filter-text-box"
+      />
+    </mat-form-field>
+  </div>
+
+  <ag-grid-angular
+    style="width: auto; height: 100%"
+    [rowData]="rowData"
+    [columnDefs]="colDefs"
+    [defaultColDef]="defaultColDef"
+    [autoSizeStrategy]="autoSizeStrategy"
+    [pagination]="true"
+    [paginationPageSize]="10"
+    [paginationPageSizeSelector]="[10, 25, 50, 100]"
+    [suppressPaginationPanel]="false"
+    [domLayout]="'autoHeight'"
+    (gridReady)="onGridReady($event)"
+  />
+</div>

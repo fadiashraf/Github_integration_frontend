@@ -1,0 +1,55 @@
+<!-- github-integration.component.html -->
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header class="header">
+      <mat-panel-title>
+        <div class="title-container">
+          <img src="icons8-github.svg" alt="Github" class="github-icon" />
+          Github
+          <span *ngIf="isConnected" class="verified-badge">
+            <mat-icon class="check-icon">check_circle</mat-icon>
+          </span>
+        </div>
+      </mat-panel-title>
+      <mat-panel-description>
+        <div *ngIf="isConnected" class="sync-info">
+          <span class="admin-label">{{ integrationData?.username }}:</span>
+          Last Synced: {{ integrationData?.lastSyncAt | date }}
+          <span class="sync-type"
+            >Sync Type:
+            {{ integrationData?.isSyncLoading ? "Partial" : "Full" }}</span
+          >
+        </div>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div *ngIf="!isConnected" class="disconnected-state">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="connect()"
+        class="connect-button"
+      >
+        Connect
+      </button>
+      <h3 class="connect-text">Connect Sredio to GitHub</h3>
+    </div>
+
+    <div *ngIf="isConnected" class="connected-state">
+      <p class="connection-date">
+        Connected on: {{ integrationData?.integrationDate | date }}
+      </p>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="removeIntegration()"
+        class="remove-button"
+      >
+        <span class="button-content">
+          Remove
+          <mat-icon class="trash-icon">delete</mat-icon>
+        </span>
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
