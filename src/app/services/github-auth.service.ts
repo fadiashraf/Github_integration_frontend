@@ -46,7 +46,6 @@ export class GithubAuthService {
           const { isAuthenticated } = res;
           this.isConnected.next(isAuthenticated);
           this.integrationData.next(res)
-          console.log('Integration status:', isAuthenticated);
         },
         error: (error) => {
           console.error('Error verifying token:', error);

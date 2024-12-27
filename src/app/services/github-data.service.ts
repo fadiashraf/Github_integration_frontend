@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { CollectionDataResponse, CollectionsResponse } from '../models/githubData.model';
+import { AdvancedFilterModel, FilterModel, SortModelItem } from 'ag-grid-community';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,22 @@ export class GithubDataService {
 
   getCollectionData (params: {
     collection: string;
-    page: number;
-    pageSize: number
+    startRow: number;
+    endRow: number;
+    sortModel: SortModelItem[];
+    filterModel: FilterModel | AdvancedFilterModel | null;
+    search: string
   }): Observable<CollectionDataResponse> {
-    return this.http.get<CollectionDataResponse>(`${this.API_URL}/github/collections/${params.collection}`, { params: { pageSize: params.pageSize, page: params.page } });
+    return this.http.get<CollectionDataResponse>(`${this.API_URL}/github/collections/${params.collection}`,
+      {
+        params: {
+          startRow: params.startRow,
+          endRow: params.endRow,
+          sortModel: JSON.stringify(params.sortModel),
+          search: params.search ?? '',
+          filterModel: JSON.stringify(params.filterModel)
+        }
+      });
   }
 
   syncData (): Observable<any> {

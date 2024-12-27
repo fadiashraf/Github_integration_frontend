@@ -10,9 +10,6 @@ export interface CollectionsResponse {
 
 
 export interface CollectionDataResponse {
-  totalCount: number;
-  data: Array<any>;
-  page: number;
-  pageSize: number;
-  totalPages: number;
+  lastRowIndex: number;
+  rows: Array<any>;
 }
