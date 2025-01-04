@@ -59,11 +59,11 @@ export class DashboardComponent implements OnInit {
     paginationPageSize: this.pageSize,
     cacheBlockSize: this.pageSize,
     serverSideSortAllLevels: true,
-    groupDisplayType: 'singleColumn'
+    groupDisplayType: 'singleColumn',
   };
 
   autoSizeStrategy: SizeColumnsToContentStrategy = {
-    type: 'fitCellContents',
+    type: 'fitCellContents'
   };
 
   private gridApi!: GridApi<any>;

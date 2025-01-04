@@ -4,22 +4,9 @@
   height: 100%;
 }
 
-.inputsContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-  justify-content: space-between;
-  margin: 20px;
-  box-sizing: border-box;
-}
-
 mat-form-field {
-  flex: 1 1 300px; /* Flexbox for responsive form fields */
-  min-width: 250px;
-}
-
-.full-width {
-  width: 100%;
+  max-width: 20%;
+  margin: 1rem;
 }
 
 ag-grid-angular {
